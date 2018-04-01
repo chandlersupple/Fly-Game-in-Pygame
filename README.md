@@ -1,12 +1,12 @@
 Fly-Game-in-Pygame
 
 
-Controls 
+Controls:
 
 Control 'sprites' with the arrow keys, and change your 'sprite' with the 'a', 's', 'd', and 'w' keys. Press 'b' to spawn a grenade.
 
 
-Code Explanation                                                                                                                          
+Code Explanation:                                                                                                                         
 
 Clouds - Using a simple 'if' statement, the clouds loop. A variable 'x', which describes the position of the clouds on the 'x-axis' is increased, then set to 0 when a certain threshold has been met.                                                                           
 
