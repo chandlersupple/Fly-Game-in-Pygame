@@ -1,5 +1,6 @@
 # 3/31/2018, Chandler Supple
 # Program opens window on desktop - Python 2.7 or Python 3 variant compatible
+# Controls - Arrows for movement, 'aswd' to change sprite, and 'b' for a grenade 
 
 import io
 from math import *
@@ -23,8 +24,14 @@ nyan1 = 'http://worldartsme.com/images/nyan-cat-clipart-1.jpg'
 nyan2 = urlopen(nyan1).read()
 nyan3 = io.BytesIO(nyan2)
 nyan4 = pygame.image.load(nyan3)
-nyan = pygame.transform.scale(nyan4,(300,100))
+nyan = pygame.transform.scale(nyan4,(250,90))
 
+grenade1 = 'http://www.freepngimg.com/download/grenade/11-hand-grenade-png-image.png'
+grenade2 = urlopen(grenade1).read()
+grenade3 = io.BytesIO(grenade2)
+grenade4 = pygame.image.load(grenade3)
+grenade = pygame.transform.scale(grenade4,(70,70))
+    
 club1 = 'https://vignette.wikia.nocookie.net/clubpenguin/images/a/af/Jet_pack_surfer.png/revision/latest?cb=20130103185837'
 club2 = urlopen(club1).read()
 club3 = io.BytesIO(club2)
@@ -38,17 +45,23 @@ hawking3 = io.BytesIO(hawking2)
 hawking4 = pygame.image.load(hawking3)
 hawking = pygame.transform.scale(hawking4,(200,230))
 
-peppa1 = 'https://i.pinimg.com/originals/e6/ec/8c/e6ec8cb3da432fa2a83928f3e95a883f.png'
-peppa2 = urlopen(peppa1).read()
-peppa3 = io.BytesIO(peppa2)
-peppa4 = pygame.image.load(peppa3)
-peppa = pygame.transform.scale(peppa4,(150,173))
+superm1 = 'http://images.clipartpanda.com/superman-clipart-dc85keogi.png'
+superm2 = urlopen(superm1).read()
+superm3 = io.BytesIO(superm2)
+superm4 = pygame.image.load(superm3)
+superm = pygame.transform.scale(superm4,(200,210))
 
 china1 = 'http://i.imgur.com/PeyFxEw.png'
 china2 = urlopen(china1).read()
 china3 = io.BytesIO(china2)
 china4 = pygame.image.load(china3)
 china = pygame.transform.scale(china4,(120,200))
+    
+boom1 = 'http://www.clker.com/cliparts/k/X/G/n/A/J/explosion-hi.png'
+boom2 = urlopen(boom1).read()
+boom3 = io.BytesIO(boom2)
+boom4 = pygame.image.load(boom3)
+boom = pygame.transform.scale(boom4, (200,200))
     
 bird1 = 'http://worldartsme.com/images/flying-bird-clipart-1.jpg'
 bird2 = urlopen(bird1).read()
@@ -72,6 +85,10 @@ x6 = 120
 y6 = 280
 x7 = 200
 y7 = 700
+x8 = 300
+x8_ = 250
+y8 = 210
+y9 = 300
 
 def cloud(x2, y2):
     pygame.draw.circle(geometry, white, (x2,y2), 40, 40)
@@ -92,7 +109,7 @@ while not done:
         if pressed[pygame.K_a]: image = club
         if pressed[pygame.K_d]: image = nyan
         if pressed[pygame.K_s]: image = hawking
-        if pressed[pygame.K_w]: image = peppa
+        if pressed[pygame.K_w]: image = superm
         
         geometry.fill((125, 125, 255))
         
@@ -123,8 +140,16 @@ while not done:
         if(x6 >= 2000):
             x6 = 0
         if(y7 >=1500):
-            y7 = 0
-        
+            y7 = -200
+
+        if pressed[pygame.K_b]: y9 = -100
+        if(y9 < 250):
+            geometry.blit(grenade, (x8, y9))
+            y9 = y9 + 4
+        if(y9 > 250 and y9 < 300):
+            geometry.blit(boom, (x8_,y8))
+            y9 = y9 + 1
+                        
         geometry.blit(china,(x7,y7))
         geometry.blit(bird,(x6,y6))
         geometry.blit(image,(x,y))
